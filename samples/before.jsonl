@@ -1,0 +1,6 @@
+{"order": "demo-1001", "level": "info", "status": 200, "reason": "ok", "ms": 120}
+{"order": "demo-1002", "level": "error", "status": 504, "reason": "payment_timeout", "ms": 3000}
+{"order": "demo-1003", "level": "error", "status": 503, "reason": "inventory_unavailable", "ms": 180}
+{"order": "demo-1004", "level": "info", "status": 200, "reason": "ok", "ms": 140}
+{"order": "demo-1005", "level": "error", "status": 504, "reason": "payment_timeout", "ms": 3000}
+{"order": "demo-1006", "level": "info", "status": 200, "reason": "ok", "ms": 130}

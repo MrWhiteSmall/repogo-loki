@@ -41,7 +41,7 @@ Windows x64：双击 `start.cmd`，或在终端运行 `py -3 run.py`。PowerShel
 
 ## 自己改一次，才算会用
 
-先备份 `samples/after.jsonl`，把 demo-1003 的 `level` 从 `error` 改为 `info`，将 `reason` 改为 `ok`，再运行相同入口。after 应变为0个失败，统计结果为空；before 仍是三条。检查 `summary.json` 的 `scenarios.after.error_orders` 是否为 `[]`。本包自动验收按输入样例计算预期，因此允许这样的实验。
+先备份 `samples/after.json`，把 demo-1003 的 `level` 从 `error` 改为 `info`，将 `reason` 改为 `ok`，再运行相同入口。after 应变为0个失败，统计结果为空；before 仍是三条。检查 `summary.json` 的 `scenarios.after.error_orders` 是否为 `[]`。本包自动验收按输入样例计算预期，因此允许这样的实验。
 
 每次运行会生成新的 run 标记，查询只看本轮。旧记录仍在本机数据目录里；“本轮看不到”不等于被删除。不要把订单号、每次变化的 run 当作流标签：本例只用应用、环境、阶段作低数量标签，订单和 run 留在 JSON 内容里。
 

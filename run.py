@@ -194,7 +194,7 @@ def demo(args):
     try:
         proc = start(exe, cfg, base, log)
         for phase in ("before", "after"):
-            samples = [json.loads(s) for s in (ROOT / "samples" / (phase + ".jsonl")).read_text(encoding="utf-8").splitlines() if s.strip()]
+            samples = json.loads((ROOT / "samples" / (phase + ".json")).read_text(encoding="utf-8"))
             original_rows[phase] = samples
             origin = time.time_ns() - 10_000_000_000
             values = [[str(origin + n * 1_000_000), json.dumps(dict(row, run=run), ensure_ascii=False)] for n, row in enumerate(samples)]

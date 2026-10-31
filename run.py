@@ -231,9 +231,9 @@ def demo(args):
                 raise RuntimeError("重启后日志内容不一致；持久化未通过")
         stop(proc)
         proc = None
-        summary = {"passed": True, "observed_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "version": VERSION, "platform": platform.platform(), "archive_sha256": digest, "base_url": base, "run": run, "scenarios": snapshots, "restart_readback": {"before": 6, "after": 6}, "process_stopped": True, "note": "原创假订单日志；after是修改样例后新写入的一组记录，未改写历史日志，也未修复真实支付系统"}
+        summary = {"passed": True, "observed_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "version": VERSION, "platform": platform.platform(), "archive_sha256": digest, "base_url": base, "run": run, "scenarios": snapshots, "restart_readback": {phase: snapshot["total"] for phase, snapshot in snapshots.items()}, "process_stopped": True, "note": "原创假订单日志；after是修改样例后新写入的一组记录，未改写历史日志，也未修复真实支付系统"}
         write_json(results / "summary.json", summary)
-        print("通过：失败原因2+1→1；退出并重启后两组各6条仍可查询。服务已停止。结果：" + str(results), flush=True)
+        print(f"通过：失败记录{len(snapshots['before']['error_orders'])}→{len(snapshots['after']['error_orders'])}；重启后before {snapshots['before']['total']}条、after {snapshots['after']['total']}条完整内容一致。服务已停止。结果：" + str(results), flush=True)
     finally:
         stop(proc)
         log.close()
